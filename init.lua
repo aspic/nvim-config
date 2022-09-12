@@ -47,9 +47,15 @@ return require('packer').startup(function(use)
                 view = {
                     adaptive_size = true
                 },
+                update_focused_file = {
+                    enable = true,
+                    update_root = false,
+                    ignore_list = {},
+                },
                 renderer = {
                     group_empty = true,
-                    symlink_destination = false
+                    symlink_destination = false,
+             	    highlight_opened_files = "all"
                 }
             }
         end
@@ -169,7 +175,7 @@ return require('packer').startup(function(use)
                 size = 24,
                 persist_size = false,
                 direction = "horizontal",
-                open_mapping = [[<c-\>]]
+                open_mapping = [[<c-T>]]
             }
         end
     }
@@ -308,5 +314,12 @@ return require('packer').startup(function(use)
     vim.keymap.set("n", "<leader>cl", vim.lsp.codelens.run, bufopts)
     vim.keymap.set("n", "<leader>sh", vim.lsp.buf.signature_help, bufopts)
 
+    use({
+        "s1n7ax/nvim-search-and-replace",
+        requires = {"nvim-search-and-replace"}
+    })
+    require("nvim-search-and-replace").setup({
+        ignore = {'**/node_modules/**', '**/.git/**',  '**/.gitignore', '**/.gitmodules','build/**','**/target/**'},
+    })
 end)
 
