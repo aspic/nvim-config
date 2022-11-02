@@ -269,7 +269,7 @@ return require('packer').startup(function(use)
 
     -- Example if you are using cmp how to make sure the correct capabilities for snippets are set
     local capabilities = vim.lsp.protocol.make_client_capabilities()
-    metals_config.capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+    metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
     local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", {
         clear = true
@@ -322,4 +322,3 @@ return require('packer').startup(function(use)
         ignore = {'**/node_modules/**', '**/.git/**',  '**/.gitignore', '**/.gitmodules','build/**','**/target/**'},
     })
 end)
-
